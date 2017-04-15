@@ -1,0 +1,56 @@
+<section id="people">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>People</h2>
+        <hr class="star-primary">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-7">
+        <h3>Person List</h3>
+        <hr>
+        <ul class="list-group">
+          <li *ngFor="let item of items" class="list-group-item" (click)="select(item)" [class.active]="isSelected(item)">
+            <span *ngIf="item.age">{{ item.name}}: {{ item.age }}</span>
+            <span *ngIf="!item.age">{{ item.name}}</span>
+            <a class="deleteItem badge" (click)="delete(item)">X</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-5">
+        <h3>Add/Update Person</h3>
+        <hr>
+        <div class="form-group">
+            Name :
+            <input class="form-control"
+        		type ="text"
+        		placeholder="Enter name"
+        		name= "name"
+        		[(ngModel)]="name">
+        </div>
+
+        <div class="form-group">
+            Age :
+            <input class="form-control"
+        		type ="number"
+            placeholder="Enter age"
+        		name= "age"
+            [(ngModel)]="age">
+        </div>
+
+        <div class="form-group">
+          <span *ngIf="selected">
+            <button class="btn btn-primary" (click)="update(name, age)">Update</button>
+            <button  class="btn btn-danger" (click)="delete(selected)">Delete</button>
+            <button  class="btn" (click)="reset()">Back</button>
+          </span>
+          <span *ngIf="!selected">
+            <button  class="btn btn-primary" (click)="create()">Create</button>
+            <button  class="btn" (click)="reset()">Reset</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
